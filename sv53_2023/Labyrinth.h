@@ -22,6 +22,8 @@ public:
 	int getItemNumber();
 	void setItemNumber(int itemNumber);
 
+	Cell** getMatrix();
+
 	Cell* operator[](unsigned int row);
 
 	void showMatrix();

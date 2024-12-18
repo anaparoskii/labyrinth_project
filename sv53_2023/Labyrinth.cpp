@@ -98,6 +98,10 @@ void Labyrinth::setItemNumber(int itemNumber) {
 	this->itemNumber = itemNumber;
 }
 
+Cell** Labyrinth::getMatrix() {
+	return this->matrix;
+}
+
 Cell* Labyrinth::operator[](unsigned int row) {
 	return this->matrix[row];
 }
