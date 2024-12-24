@@ -42,6 +42,7 @@ int main() {
 
 	bool play = true;
 	bool won = false;
+	bool lost = false;
 	char minotaurMoves[4] = {'W', 'A', 'S', 'D'};
 
 	while (play) {
@@ -110,8 +111,21 @@ int main() {
 			for (unsigned int i = 0; i < labyrinth.getRows(); i++) {
 				for (unsigned int j = 0; j < labyrinth.getCols(); j++) {
 					if (labyrinth.getMatrix()[i][j].getType() == 'M') {
+						// ako je pored minotaura robot 'R' nek ga pojede
+						for (unsigned int k = 0; k < labyrinth.getRows(); k++) {
+							for (unsigned int l = 0; l < labyrinth.getCols(); l++) {
+								if (labyrinth.getMatrix()[k][l].getType() == 'R') {
+									if ((i == k && (j + 1 == l || j - 1 == l)) || (j == l && (i + 1 == k || i - 1 == k))) {
+										labyrinth.getMatrix()[k][l] = 'M';
+										labyrinth.getMatrix()[i][j] = '.';
+										minotaurMoved = true;
+										lost = true;
+										play = false;
+									}
+								}
+							}
+						}
 						while (!minotaurMoved) {
-							// ako je pored minotaura robot 'R' nek ga pojede
 							int minotaurMove = std::rand() % 4;  // 4 moguca poteza - A, W, S, D
 							char move = minotaurMoves[minotaurMove];
 							unsigned int newRow = i;
@@ -139,7 +153,11 @@ int main() {
 									&& labyrinth.getMatrix()[newRow][newCol].getType() != 'I' 
 									&& labyrinth.getMatrix()[newRow][newCol].getType() != 'U') {
 									// logika za kupljenje predmeta 'P'
+									// minotaur samo unisti predmet tako da nema potrebe za dodatnom logikom
 									labyrinth.getMatrix()[i][j] = '.';
+									if (labyrinth.getMatrix()[newRow][newCol].getType() == 'P') {
+										std::cout << "Minotaur destroyed an object!" << std::endl;
+									}
 									labyrinth.getMatrix()[newRow][newCol] = 'M';
 									minotaurMoved = true;
 								}
@@ -150,7 +168,12 @@ int main() {
 			}
 		}
 		if (won) {
+			labyrinth.showMatrix();
 			std::cout << "You got out!!!" << std::endl;
+		}
+		else if (lost) {
+			labyrinth.showMatrix();
+			std::cout << "Minotaur caught you! :(" << std::endl;
 		}
 	}
 	return 0;
