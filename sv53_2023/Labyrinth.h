@@ -7,6 +7,8 @@ private:
 	unsigned int rows;
 	unsigned int cols;
 	int itemNumber;
+	int robotCoordinates[2];
+	int minotaurCoordinates[2];
 
 public:
 	Labyrinth();
@@ -22,6 +24,12 @@ public:
 	int getItemNumber();
 	void setItemNumber(int itemNumber);
 
+	int* getRobotCoordinates();
+	void setRobotCoordinates(int row, int col);
+
+	int* getMinotaurCoordinates();
+	void setMinotaurCoordinates(int row, int col);
+
 	Cell** getMatrix();
 
 	Cell* operator[](unsigned int row);
@@ -29,4 +37,5 @@ public:
 	void showMatrix();
 
 	Cell** generateLabyrinth();
+	Cell** findPath();
 };
