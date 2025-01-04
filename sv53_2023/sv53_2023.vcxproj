@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Labyrinth.h" />
+    <ClInclude Include="SaveData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Labyrinth.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SaveData.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Cell.h"
 #include "Labyrinth.h"
+#include "SaveData.h"
 
 int main() {
 	std::cout << "~~~ KNOSSOS LABYRINTH ~~~" << std::endl;
@@ -168,5 +169,7 @@ int main() {
 		labyrinth.showMatrix();
 		std::cout << "Minotaur caught you! :(" << std::endl;
 	}
+	SaveData saveData;
+	saveData.saveGame(labyrinth, won, lost);
 	return 0;
 }
