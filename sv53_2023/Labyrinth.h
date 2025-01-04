@@ -36,6 +36,6 @@ public:
 
 	void showMatrix();
 
-	Cell** generateLabyrinth();
-	Cell** findPath();
+	/*Cell** generateLabyrinth();
+	Cell** findPath();*/
 };

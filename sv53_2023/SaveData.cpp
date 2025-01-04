@@ -31,7 +31,7 @@ void SaveData::setFileName(std::string name) {
 int SaveData::getLastGame() {
 	std::ifstream file("lastGame.txt");
 	if (!file.is_open()) {
-		return 1;
+		return -1;
 	}
 	int number;
 	std::string line;
