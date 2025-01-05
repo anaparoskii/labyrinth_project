@@ -7,17 +7,12 @@ Autor: Ana Paroski
 Poslednja izmena: 18.12.2024.
 */
 
-Cell::Cell() {
-	this->x = 0;
-	this->y = 0;
-	this->type = ' ';
-}
+Cell::Cell() 
+: x(0), y(0), type(' ') {}
 
-Cell::Cell(unsigned int x, unsigned int y, char type) {
-	this->x = x;
-	this->y = y;
-	this->type = type;
-}
+Cell::Cell(unsigned int x, unsigned int y, char type) 
+: x(x), y(y), type(type) {}
+
 Cell::~Cell() {}
 
 unsigned int Cell::getX() {
@@ -46,9 +41,9 @@ void Cell::setType(char type) {
 
 Cell& Cell::operator=(const Cell& otherCell) {
 	/*
-	preklopljen operator dodele koji izjednacava celiju sa drugom celijom
-	parametri: referenca na dodeljenu celiju
-	povratna vrednost: referenca na izmenjenu celiju
+	Preklopljen operator dodele koji izjednacava celiju sa drugom celijom
+	Parametri: referenca na dodeljenu celiju
+	Povratna vrednost: referenca na izmenjenu celiju
 	*/
 	if (this != &otherCell) {
 		this->x = otherCell.x;
@@ -60,9 +55,9 @@ Cell& Cell::operator=(const Cell& otherCell) {
 
 Cell& Cell::operator=(char newType) {
 	/*
-	preklopljen operator dodele koji dodeljuje tip celiji
-	parametri: tip koji se dodeljuje
-	povratna vrednost: referenca na izmenjenu celiju
+	Preklopljen operator dodele koji dodeljuje tip celiji
+	Parametri: tip koji se dodeljuje
+	Povratna vrednost: referenca na izmenjenu celiju
 	*/
 	this->type = newType;
 	return *this;

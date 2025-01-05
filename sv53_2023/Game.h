@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Cell.h"
 #include "Labyrinth.h"
+#include "SpecialItem.h"
 
 class Game {
 	/*
@@ -37,5 +38,25 @@ public:
 
 	// funkcija koja predstavlja tok igre
 	void startGame();
+
+	// pomocne funckije
+	void updateActiveItems();
+	void showMatrix();
+	void wallCollision(int currentRobotX, int currentRobotY, int newRobotX, int newRobotY);
+	void minotaurCollision(int currentRobotX, int currentRobotY, int newRobotX, int newRobotY);
+	void itemCollection(int currentRobotX, int currentRobotY, int newRobotX, int newRobotY);
+	bool robotCollision(int robotX, int robotY, int minotaurX, int minotaurY);
+	bool robotMove(int newRobotX, int newRobotY);
+	void handleEnd();
+
+	/*
+	Funkcije koje proveravaju da li su odredjeni specijalni predmeti aktivni
+	Parametri: referenca na listu pokupljenih specijalnih predmeta i ukupan broj specijalnih predmeta na tabli
+	Povratna vrednost: true ili false
+	*/
+	bool swordActive(SpecialItem* itemList, int length);
+	bool hammerActive(SpecialItem* itemList, int length);
+	bool shieldActive(SpecialItem* itemList, int length);
+	bool fogActive(SpecialItem* itemList, int length);
 
 };

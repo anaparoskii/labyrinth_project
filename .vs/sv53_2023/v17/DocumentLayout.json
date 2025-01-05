@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.cpp",
+              "RelativeDocumentMoniker": "sv53_2023\\Game.cpp",
+              "ToolTip": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.cpp",
+              "RelativeToolTip": "sv53_2023\\Game.cpp",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-05T18:32:52.509Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.h",
+              "RelativeDocumentMoniker": "sv53_2023\\Game.h",
+              "ToolTip": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.h",
+              "RelativeToolTip": "sv53_2023\\Game.h",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACYAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-05T18:32:21.662Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,9 +58,9 @@
               "RelativeDocumentMoniker": "sv53_2023\\Main.cpp",
               "ToolTip": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Main.cpp",
               "RelativeToolTip": "sv53_2023\\Main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-05T14:57:09.224Z",
+              "WhenOpened": "2025-01-05T17:50:26.053Z",
               "EditorCaption": ""
             }
           ]

@@ -1,26 +1,22 @@
 #include <iostream>
+#include <string>
 #include "Cell.h"
 #include "Labyrinth.h"
 #include "Game.h"
 #include "SaveData.h"
+#include "SpecialItem.h"
 
 /*
 Modul koji sadrzi funkcije za tok igre
 Autor: Ana Paroski
-Poslednja izmena: 04.01.2025.
+Poslednja izmena: 05.01.2025.
 */
 
-Game::Game(Labyrinth& l) : labyrinth(l) {
-	this->play = true;
-	this->won = false;
-	this->lost = false;
-}
+Game::Game(Labyrinth& l) 
+	: labyrinth(l), play(true), won(false), lost(false) {}
 
-Game::Game(Labyrinth& l, bool play, bool won, bool lost) : labyrinth(l) {
-	this->play = play;
-	this->won = won;
-	this->lost = lost;
-}
+Game::Game(Labyrinth& l, bool play, bool won, bool lost) 
+	: labyrinth(l), play(play), won(won), lost(lost) {}
 
 Game::~Game() {}
 
@@ -54,11 +50,12 @@ void Game::setLost(bool lost) {
 
 void Game::startGame() {
 	/*
-	ova funkcija sadrzi petlju koja omogacava nastavak igre sve dok je parametar play = true
+	Ova funkcija sadrzi petlju koja omogacava nastavak igre sve dok je parametar play = true
 	*/
 
 	while (play) {
-		labyrinth.showMatrix();
+		updateActiveItems();
+		showMatrix();
 		char move;
 		// korisnik bira potez
 		std::cout << "Make a move [W, A, S, D; Q - quit]: " << std::endl;
@@ -97,20 +94,7 @@ void Game::startGame() {
 		}
 		if (!play) break;
 		if (!moved && newRow >= 0 && newRow < labyrinth.getRows() && newCol >= 0 && newCol < labyrinth.getCols()) {
-			if (labyrinth.getMatrix()[newRow][newCol].getType() == '#') {
-				std::cout << "You can't walk through walls..." << std::endl;
-			}
-			else {
-				// logika za kupljenje predmeta 'P'
-				labyrinth.getMatrix()[labyrinth.getRobotCoordinates()[0]][labyrinth.getRobotCoordinates()[1]] = '.';
-				if (labyrinth.getMatrix()[newRow][newCol].getType() == 'I') {
-					won = true;
-					play = false;
-				}
-				labyrinth.getMatrix()[newRow][newCol] = 'R';
-				labyrinth.setRobotCoordinates(newRow, newCol);
-			}
-			moved = true;
+			moved = robotMove(newRow, newCol);
 		}
 		if (!play) break;
 		if (moved) {
@@ -120,17 +104,8 @@ void Game::startGame() {
 			int mCol = labyrinth.getMinotaurCoordinates()[1];
 			int rRow = labyrinth.getRobotCoordinates()[0];
 			int rCol = labyrinth.getRobotCoordinates()[1];
-			// ako je pored minotaura robot, nek ga pojede
-			if ((mRow == rRow && (mCol + 1 == rCol || mCol - 1 == rCol)) 
-				|| (mCol == rCol && (mRow + 1 == rRow || mRow - 1 == rRow))) {
-				labyrinth.getMatrix()[rRow][rCol] = 'M';
-				labyrinth.getMatrix()[mRow][mCol] = '.';
-				labyrinth.setMinotaurCoordinates(rRow, rCol);
-				labyrinth.setRobotCoordinates(-1, -1);
-				minotaurMoved = true;
-				lost = true;
-				play = false;
-			}
+			
+			minotaurMoved = robotCollision(rRow, rCol, mRow, mCol);
 			// ako nije pored robota, bira se nasumican potez
 			while (!minotaurMoved) {
 				int minotaurMove = std::rand() % 4;  // 4 moguca poteza - A (levo), W (gore), S (dole), D (desno)
@@ -156,16 +131,16 @@ void Game::startGame() {
 				}
 				}
 				if (newRow > 0 && newRow < labyrinth.getRows() - 1 && newCol > 0 && newCol < labyrinth.getCols() - 1) {
-					if (labyrinth.getMatrix()[newRow][newCol].getType() != '#'
-						&& labyrinth.getMatrix()[newRow][newCol].getType() != 'I'
-						&& labyrinth.getMatrix()[newRow][newCol].getType() != 'U') {
+					if (labyrinth[newRow][newCol].getType() != '#'
+						&& labyrinth[newRow][newCol].getType() != 'I'
+						&& labyrinth[newRow][newCol].getType() != 'U') {
 						// logika za kupljenje predmeta 'P'
 						// minotaur samo unisti predmet tako da nema potrebe za dodatnom logikom
-						labyrinth.getMatrix()[mRow][mCol] = '.';
-						if (labyrinth.getMatrix()[newRow][newCol].getType() == 'P') {
+						labyrinth[mRow][mCol] = '.';
+						if (labyrinth[newRow][newCol].getType() == 'P') {
 							std::cout << "Minotaur destroyed an object!" << std::endl;
 						}
-						labyrinth.getMatrix()[newRow][newCol] = 'M';
+						labyrinth[newRow][newCol] = 'M';
 						labyrinth.setMinotaurCoordinates(newRow, newCol);
 						minotaurMoved = true;
 					}
@@ -174,7 +149,160 @@ void Game::startGame() {
 			}
 		}
 	}
-	// provera da li je doslo do pobede robota ili minotaura
+	handleEnd();
+}
+
+void Game::updateActiveItems() {
+	for (int i = 0; i < labyrinth.getItemNumber(); i++) {
+		if (labyrinth.getItemList()[i].isActive()) {
+			labyrinth.getItemList()[i].setMovesLeft(labyrinth.getItemList()[i].getMovesLeft() - 1);
+			if (labyrinth.getItemList()[i].getMovesLeft() == 0) {
+				labyrinth.getItemList()[i].setActive(false);
+			}
+		}
+	}
+}
+
+void Game::showMatrix() {
+	if (fogActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+		labyrinth.showFogMatrix();
+	}
+	else {
+		labyrinth.showMatrix();
+	}
+}
+
+void Game::wallCollision(int currentRobotX, int currentRobotY, int newRobotX, int newRobotY) {
+	/*
+	Funkcija koja se bavi situacijom kada robot treba da prodje kroz zid
+	Ako nam nije aktiviran cekic, ovo nece biti moguce
+	Parametri: vrednosti starih i potencijalnih novih koordinata robota
+	*/
+	if (hammerActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+		labyrinth[currentRobotX][currentRobotY] = '.';
+		labyrinth[newRobotX][newRobotY] = 'R';
+		labyrinth.setRobotCoordinates(newRobotX, newRobotY);
+		std::cout << "You destroyed a wall!!!" << std::endl;
+	}
+	else {
+		std::cout << "You can't walk through walls..." << std::endl;
+	}
+}
+
+void Game::minotaurCollision(int currentRobotX, int currentRobotY, int newRobotX, int newRobotY) {
+	/*
+	Funkcija koja se bavi situacijom kada robot krene na minotaura
+	Ako nam nije aktiviran mac, minotaur ce unistiti robota
+	Parametri: vrednosti starih i potencijalnih novih koordinata robota
+	*/
+	if (swordActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+		labyrinth[currentRobotX][currentRobotY] = '.';
+		labyrinth[newRobotX][newRobotY] = 'R';
+		labyrinth.setRobotCoordinates(newRobotX, newRobotY);
+		labyrinth.setMinotaurCoordinates(-1, -1);
+		std::cout << "You killed the minotaur!!!" << std::endl;
+	}
+	else {
+		labyrinth[currentRobotX][currentRobotY] = '.';
+		labyrinth.setRobotCoordinates(-1, -1);
+		play = false;
+		lost = true;
+	}
+}
+
+void Game::itemCollection(int currentRobotX, int currentRobotY, int newRobotX, int newRobotY) {
+	/*
+	Funkcija koja omogucava kupljenje predmeta na tabli
+	Parametri: vrednosti starih i novih koordinata robota
+	*/
+	labyrinth[currentRobotX][currentRobotY] = '.';
+
+	// bira se nasumicno koji ce predmet biti aktivan
+	int randomItem = std::rand() % 4;
+	SpecialItem item(newRobotX, newRobotY, "");
+	switch (randomItem) {
+	case 0: {
+		item = item.fogOfWarItem();
+		break;
+	}
+	case 1: {
+		item = item.swordItem();
+		break;
+	}
+	case 2: {
+		item = item.shieldItem();
+		break;
+	}
+	case 3: {
+		item = item.hammerItem();
+		break;
+	}
+	}
+	for (int i = 0; i < labyrinth.getItemNumber(); i++) {
+		if (labyrinth.getItemList()[i].getX() == -1) {
+			labyrinth.getItemList()[i] = item;
+			break;
+		}
+	}
+	labyrinth[newRobotX][newRobotY] = 'R';
+	labyrinth.setRobotCoordinates(newRobotX, newRobotY);
+}
+
+bool Game::robotCollision(int robotX, int robotY, int minotaurX, int minotaurY) {
+	/*
+	Funkcija koja se bavi situacijom gde minotaur unistava robota ako se nalazi pored njega
+	Parametri: trenutne koordinate robota i minotaura
+	Povratna vrednost: bool da li se minotaur pomerio ili nije
+	*/
+	if ((minotaurX == robotX && (minotaurY + 1 == robotY || minotaurY - 1 == robotY))
+		|| (minotaurY == robotY && (minotaurX + 1 == robotX || minotaurX - 1 == robotX))) {
+		if (shieldActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+			std::cout << "You stopped the minotaur!!!" << std::endl;
+		}
+		else {
+			labyrinth[robotX][robotY] = 'M';
+			labyrinth[minotaurX][minotaurY] = '.';
+			labyrinth.setMinotaurCoordinates(robotX, robotY);
+			labyrinth.setRobotCoordinates(-1, -1);
+			lost = true;
+			play = false;
+		}
+		return true;
+	}
+	return false;
+}
+
+bool Game::robotMove(int newRobotX, int newRobotY) {
+	/*
+	Funkcija koja se bavi kretanjem robota
+	*/
+	unsigned int x = labyrinth.getRobotCoordinates()[0];
+	unsigned int y = labyrinth.getRobotCoordinates()[1];
+	if (labyrinth[newRobotX][newRobotY].getType() == '#') {
+		wallCollision(x, y, newRobotX, newRobotY);
+	}
+	else if (labyrinth[newRobotX][newRobotY].getType() == 'M') {
+		minotaurCollision(x, y, newRobotX, newRobotY);
+	}
+	else if (labyrinth[newRobotX][newRobotY].getType() == 'P') {
+		itemCollection(x, y, newRobotX, newRobotY);
+	}
+	else {
+		labyrinth[x][y] = '.';
+		if (labyrinth[newRobotX][newRobotY].getType() == 'I') {
+			won = true;
+			play = false;
+		}
+		labyrinth[newRobotX][newRobotY] = 'R';
+		labyrinth.setRobotCoordinates(newRobotX, newRobotY);
+	}
+	return true;
+}
+
+void Game::handleEnd() {
+	/*
+	Funkcija koja obezbedjuje kraj igre, proverava se ima li pobednika i rezultat se cuva u .txt fajl
+	*/
 	if (won) {
 		labyrinth.showMatrix();
 		std::cout << "You got out!!!" << std::endl;
@@ -186,4 +314,40 @@ void Game::startGame() {
 	// cuvanje igre u fajl
 	SaveData saveData;
 	saveData.saveGame(labyrinth, won, lost);
+}
+
+bool Game::swordActive(SpecialItem* itemList, int length) {
+	for (int i = 0; i < length; i++) {
+		if (itemList[i].isActive() && itemList[i].getItemName() == "sword") {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Game::hammerActive(SpecialItem* itemList, int length) {
+	for (int i = 0; i < length; i++) {
+		if (itemList[i].isActive() && itemList[i].getItemName() == "hammer") {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Game::shieldActive(SpecialItem* itemList, int length) {
+	for (int i = 0; i < length; i++) {
+		if (itemList[i].isActive() && itemList[i].getItemName() == "shield") {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Game::fogActive(SpecialItem* itemList, int length) {
+	for (int i = 0; i < length; i++) {
+		if (itemList[i].isActive() && itemList[i].getItemName() == "fog of war") {
+			return true;
+		}
+	}
+	return false;
 }

@@ -3,7 +3,9 @@
 #include "Game.h"
 
 /*
-ovde se nalazi postavka igre - bira se dimenzija matrice i broj specijalnih predmeta na tabli
+Ovde se nalazi postavka igre - bira se dimenzija matrice i broj specijalnih predmeta na tabli
+Autor: Ana Paroski
+Poslednja izmena: 04.01.2025.
 */
 
 int main() {

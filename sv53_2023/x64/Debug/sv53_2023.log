@@ -1,3 +1,10 @@
-﻿  GenerateLabyrinth.cpp
-C:\Users\Ana\Desktop\sv53_2023\sv53_2023\GenerateLabyrinth.cpp(115,29): warning C4018: '<': signed/unsigned mismatch
+﻿  Game.cpp
+  GenerateLabyrinth.cpp
+C:\Users\Ana\Desktop\sv53_2023\sv53_2023\GenerateLabyrinth.cpp(142,29): warning C4018: '<': signed/unsigned mismatch
+  Labyrinth.cpp
+C:\Users\Ana\Desktop\sv53_2023\sv53_2023\Labyrinth.cpp(118,38): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ana\Desktop\sv53_2023\sv53_2023\Labyrinth.cpp(119,39): warning C4018: '<': signed/unsigned mismatch
+  Main.cpp
+  SaveData.cpp
+  Generating Code...
   sv53_2023.vcxproj -> C:\Users\Ana\Desktop\sv53_2023\x64\Debug\sv53_2023.exe

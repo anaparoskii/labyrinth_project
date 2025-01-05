@@ -12,10 +12,10 @@ Poslednja izmena: 04.01.2025.
 
 Cell** generateLabyrinth(Labyrinth& labyrinth) {
 	/*
-	ova funkcija generise lavirint, postavlja ulaz, robota, minotaura, predmete
-	takodje, meri vreme potrebno za generisanje lavirinta i ispisuje ga u mikrosekundama
-	parametri: referenca na lavirint koji se generise
-	povratna vrednost: matrica tog lavirinta
+	Ova funkcija generise lavirint, postavlja ulaz, robota, minotaura, predmete
+	Takodje, meri vreme potrebno za generisanje lavirinta i ispisuje ga u mikrosekundama
+	Parametri: referenca na lavirint koji se generise
+	Povratna vrednost: matrica tog lavirinta
 	*/
 
 	auto start = std::chrono::high_resolution_clock::now();  // uzima trenutno vreme radi racunanja vremena potrebnog za generisanje
@@ -82,9 +82,9 @@ Cell** generateLabyrinth(Labyrinth& labyrinth) {
 
 Cell** findPath(Labyrinth& labyrinth, Cell** matrix) {
 	/*
-	funkcija koja pronalazi siguran put kroz lavirint
-	parametri: referenca na lavirint, matrica tog lavirinta
-	povratna vrednost: matrica lavirinta
+	Funkcija koja pronalazi siguran put kroz lavirint
+	Parametri: referenca na lavirint, matrica tog lavirinta
+	Povratna vrednost: matrica lavirinta
 	*/
 
 	int pathLength = 0;

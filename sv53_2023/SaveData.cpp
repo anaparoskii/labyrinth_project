@@ -37,8 +37,8 @@ void SaveData::setFileName(std::string name) {
 
 int SaveData::getLastGame() {
 	/*
-	funkcija ucitava redni broj poslednje igre iz fajla lastGame.txt
-	povratna vrednost: redni broj poslednje igre
+	Funkcija ucitava redni broj poslednje igre iz fajla lastGame.txt
+	Povratna vrednost: redni broj poslednje igre
 	*/
 	std::ifstream file("lastGame.txt");
 	if (!file.is_open()) {
@@ -53,13 +53,13 @@ int SaveData::getLastGame() {
 
 int SaveData::saveGame(Labyrinth& labyrinth, bool won, bool lost) {
 	/*
-	funkcija cuva poslednju odigranu igru u fajl sa njenim rednim brojem, kao i u fajl lasyGame.txt
-	u fajl se upisuje redni broj igre, stanje lavirinta nakon poslednjeg poteza i rezultat
-	parametri: refernca na lavirint, boolean vrednosti won i lost
+	Funkcija cuva poslednju odigranu igru u fajl sa njenim rednim brojem, kao i u fajl lasyGame.txt
+	U fajl se upisuje redni broj igre, stanje lavirinta nakon poslednjeg poteza i rezultat
+	Parametri: refernca na lavirint, boolean vrednosti won i lost
 	- bool won - true ako je robot pobedio (izasao iz lavirinta)
 	- bool lost - true ako je minotaur pobedio (pojeo robota)
 	- ako su oba false - robot je napustio igru
-	povratna vrednost: -1 ako je doslo do greske, 0 ako je sve izvrseno kako treba
+	Povratna vrednost: -1 ako je doslo do greske, 0 ako je sve izvrseno kako treba
 	*/
 	std::ofstream file(this->fileName);
 	std::ofstream lastGameFile("lastGame.txt");

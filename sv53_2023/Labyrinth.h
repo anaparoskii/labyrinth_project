@@ -1,11 +1,12 @@
 #pragma once
 #include "Cell.h"
+#include "SpecialItem.h"
 
 class Labyrinth {
 	/*
 	Klasa koja predstavlja lavirint
 	Autor: Ana Paroski
-	Poslednja izmena: 04.01.2025.
+	Poslednja izmena: 05.01.2025.
 	*/
 private:
 	Cell** matrix;  // dvodimenzionalni niz (matrica)
@@ -14,6 +15,7 @@ private:
 	int itemNumber;  // broj specijalnih elemenata u lavirintu
 	int robotCoordinates[2];  // niz od 2 elementa koji cuva trenutne koordinate robota
 	int minotaurCoordinates[2];  // niz od 2 elementa koji cuva trenutne koordinate minotaura
+	SpecialItem* itemList;  // lista pokupljenih predmeta
 
 public:
 	// konstruktori i destruktor
@@ -37,6 +39,9 @@ public:
 	int* getMinotaurCoordinates();
 	void setMinotaurCoordinates(int row, int col);
 
+	SpecialItem* getItemList();
+	void setItemList(SpecialItem* itemList);
+
 	// matrica ima samo getter jer se ona inicijalizuje u konstruktoru pomocu modula GenerateLabyrinth
 	Cell** getMatrix();
 
@@ -45,4 +50,7 @@ public:
 
 	// funkcija koja ispisuje matricu u konzoli
 	void showMatrix();
+	void showFogMatrix();
+
+	void printItems();
 };
