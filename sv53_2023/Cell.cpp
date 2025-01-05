@@ -1,6 +1,12 @@
 #include <iostream>
 #include "Cell.h"
 
+/* 
+Ovaj modul sadrzi funkcije koje rade sa celijom matrice
+Autor: Ana Paroski
+Poslednja izmena: 18.12.2024.
+*/
+
 Cell::Cell() {
 	this->x = 0;
 	this->y = 0;
@@ -35,13 +41,15 @@ char Cell::getType() {
 }
 
 void Cell::setType(char type) {
-	if (type == '.' || type == '#' || type == 'I' || type == 'U' || type == 'R' || type == 'M' || type == 'P') {
-		this->type = type;
-	}
-	throw std::invalid_argument("Invalid type argument!");
+	this->type = type;
 }
 
 Cell& Cell::operator=(const Cell& otherCell) {
+	/*
+	preklopljen operator dodele koji izjednacava celiju sa drugom celijom
+	parametri: referenca na dodeljenu celiju
+	povratna vrednost: referenca na izmenjenu celiju
+	*/
 	if (this != &otherCell) {
 		this->x = otherCell.x;
 		this->y = otherCell.y;
@@ -51,6 +59,11 @@ Cell& Cell::operator=(const Cell& otherCell) {
 }
 
 Cell& Cell::operator=(char newType) {
+	/*
+	preklopljen operator dodele koji dodeljuje tip celiji
+	parametri: tip koji se dodeljuje
+	povratna vrednost: referenca na izmenjenu celiju
+	*/
 	this->type = newType;
 	return *this;
 }

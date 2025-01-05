@@ -4,9 +4,23 @@
 #include "Cell.h"
 #include "Labyrinth.h"
 
+/*
+Modul koji sadrzi definicije funkcija koje generisu lavirint
+Autor: Ana Paroski
+Poslednja izmena: 04.01.2025.
+*/
+
 Cell** generateLabyrinth(Labyrinth& labyrinth) {
+	/*
+	ova funkcija generise lavirint, postavlja ulaz, robota, minotaura, predmete
+	takodje, meri vreme potrebno za generisanje lavirinta i ispisuje ga u mikrosekundama
+	parametri: referenca na lavirint koji se generise
+	povratna vrednost: matrica tog lavirinta
+	*/
+
+	auto start = std::chrono::high_resolution_clock::now();  // uzima trenutno vreme radi racunanja vremena potrebnog za generisanje
+
 	// inicijalizacija matrice
-	auto start = std::chrono::high_resolution_clock::now();
 	Cell** matrix;
 	matrix = new Cell * [labyrinth.getRows()];
 	for (unsigned int i = 0; i < labyrinth.getRows(); i++) {
@@ -30,6 +44,7 @@ Cell** generateLabyrinth(Labyrinth& labyrinth) {
 		while (true) {
 			int randRow = 1 + std::rand() % (labyrinth.getRows() - 2);
 			int randCol = 1 + std::rand() % (labyrinth.getCols() - 2);
+			// predmeti se dodaju na bilo kom prolazu
 			if (matrix[randRow][randCol].getType() == '*' || matrix[randRow][randCol].getType() == '.') {
 				matrix[randRow][randCol] = Cell(randRow, randCol, 'P');
 				break;
@@ -41,6 +56,7 @@ Cell** generateLabyrinth(Labyrinth& labyrinth) {
 	while (true) {
 		int randRow = 1 + std::rand() % (labyrinth.getRows() - 2);
 		int randCol = 1 + std::rand() % (labyrinth.getCols() - 2);
+		// minotaur se dodaje negde na siguran put
 		if (matrix[randRow][randCol].getType() == '*') {
 			matrix[randRow][randCol] = Cell(randRow, randCol, 'M');
 			labyrinth.setMinotaurCoordinates(randRow, randCol);
@@ -56,6 +72,8 @@ Cell** generateLabyrinth(Labyrinth& labyrinth) {
 			}
 		}
 	}
+
+	// prikaz vremena potrebnog za generisanje lavirinta
 	auto end = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 	std::cout << "Matrix generated in " << duration.count() << " microseconds." << std::endl;
@@ -63,6 +81,12 @@ Cell** generateLabyrinth(Labyrinth& labyrinth) {
 }
 
 Cell** findPath(Labyrinth& labyrinth, Cell** matrix) {
+	/*
+	funkcija koja pronalazi siguran put kroz lavirint
+	parametri: referenca na lavirint, matrica tog lavirinta
+	povratna vrednost: matrica lavirinta
+	*/
+
 	int pathLength = 0;
 	// nalazi put od ulaza do izlaza tako sto random bira sledecu poziciju (levo [0], dole [1], desno [2])
 	unsigned int newRow = labyrinth.getRobotCoordinates()[0];
@@ -88,11 +112,12 @@ Cell** findPath(Labyrinth& labyrinth, Cell** matrix) {
 		}
 
 		if (newRow > 0 && newRow < labyrinth.getRows() - 1 && newCol > 0 && newCol < labyrinth.getCols() - 1) {
-			// privremeno siguran put obelezavam zvezdicom
+			// privremeno, siguran put obelezavam zvezdicom '*'
 			matrix[newRow][newCol] = Cell(newRow, newCol, '*');
 			pathLength++;
 		}
 		else if (newRow == labyrinth.getRows() - 1) {
+			// ako smo u poslednjem redu, postavljamo izlaz na odabranu poziciju i prekidamo petlju
 			matrix[newRow][newCol] = Cell(newRow, newCol, 'I');
 			break;
 		}
@@ -102,6 +127,8 @@ Cell** findPath(Labyrinth& labyrinth, Cell** matrix) {
 			newCol = prevCol;
 		}
 	}
+
+	// ovde se racuna koji ce jos celija citi zidovi, a koliko prolaz
 
 	// ukupan broj celija
 	int cellNumber = labyrinth.getRows() * labyrinth.getCols();
@@ -117,6 +144,7 @@ Cell** findPath(Labyrinth& labyrinth, Cell** matrix) {
 			int randRow = 1 + std::rand() % (labyrinth.getRows() - 2);
 			int randCol = 1 + std::rand() % (labyrinth.getCols() - 2);
 			if (matrix[randRow][randCol].getType() == '#') {
+				// put koji nije siguran (nasumicno dodate prolaze) obelezavamo tackom '.'
 				matrix[randRow][randCol] = Cell(randRow, randCol, '.');
 				break;
 			}

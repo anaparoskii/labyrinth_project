@@ -4,6 +4,13 @@
 #include "SaveData.h"
 #include "Labyrinth.h"
 
+/*
+Modul koji sadrzi funkcije za rukovanje fajlova
+Autor: Ana Paroski
+Poslednja izmena: 04.01.2025.
+*/
+
+// konstruktor poziva funkciju getLastGame() i sam racuna redni broj sledece igre i na osnovu toga generise ime fajla
 SaveData::SaveData() {
 	int lastGameNumber = this->getLastGame();
 	this->gameNumber = lastGameNumber + 1;
@@ -29,6 +36,10 @@ void SaveData::setFileName(std::string name) {
 }
 
 int SaveData::getLastGame() {
+	/*
+	funkcija ucitava redni broj poslednje igre iz fajla lastGame.txt
+	povratna vrednost: redni broj poslednje igre
+	*/
 	std::ifstream file("lastGame.txt");
 	if (!file.is_open()) {
 		return -1;
@@ -37,11 +48,19 @@ int SaveData::getLastGame() {
 	std::string line;
 	file >> number;
 
-	// broj poslednje igre
 	return number;
 }
 
 int SaveData::saveGame(Labyrinth& labyrinth, bool won, bool lost) {
+	/*
+	funkcija cuva poslednju odigranu igru u fajl sa njenim rednim brojem, kao i u fajl lasyGame.txt
+	u fajl se upisuje redni broj igre, stanje lavirinta nakon poslednjeg poteza i rezultat
+	parametri: refernca na lavirint, boolean vrednosti won i lost
+	- bool won - true ako je robot pobedio (izasao iz lavirinta)
+	- bool lost - true ako je minotaur pobedio (pojeo robota)
+	- ako su oba false - robot je napustio igru
+	povratna vrednost: -1 ako je doslo do greske, 0 ako je sve izvrseno kako treba
+	*/
 	std::ofstream file(this->fileName);
 	std::ofstream lastGameFile("lastGame.txt");
 	if (!file.is_open()) {

@@ -4,6 +4,12 @@
 #include "Game.h"
 #include "SaveData.h"
 
+/*
+Modul koji sadrzi funkcije za tok igre
+Autor: Ana Paroski
+Poslednja izmena: 04.01.2025.
+*/
+
 Game::Game(Labyrinth& l) : labyrinth(l) {
 	this->play = true;
 	this->won = false;
@@ -47,9 +53,14 @@ void Game::setLost(bool lost) {
 }
 
 void Game::startGame() {
+	/*
+	ova funkcija sadrzi petlju koja omogacava nastavak igre sve dok je parametar play = true
+	*/
+
 	while (play) {
 		labyrinth.showMatrix();
 		char move;
+		// korisnik bira potez
 		std::cout << "Make a move [W, A, S, D; Q - quit]: " << std::endl;
 		std::cin >> move;
 		bool moved = false;
@@ -110,7 +121,8 @@ void Game::startGame() {
 			int rRow = labyrinth.getRobotCoordinates()[0];
 			int rCol = labyrinth.getRobotCoordinates()[1];
 			// ako je pored minotaura robot, nek ga pojede
-			if ((mRow == rRow && (mCol + 1 == rCol || mCol - 1 == rCol)) || (mCol == rCol && (mRow + 1 == rRow || mRow - 1 == rRow))) {
+			if ((mRow == rRow && (mCol + 1 == rCol || mCol - 1 == rCol)) 
+				|| (mCol == rCol && (mRow + 1 == rRow || mRow - 1 == rRow))) {
 				labyrinth.getMatrix()[rRow][rCol] = 'M';
 				labyrinth.getMatrix()[mRow][mCol] = '.';
 				labyrinth.setMinotaurCoordinates(rRow, rCol);
@@ -119,9 +131,9 @@ void Game::startGame() {
 				lost = true;
 				play = false;
 			}
-			// ako nije
+			// ako nije pored robota, bira se nasumican potez
 			while (!minotaurMoved) {
-				int minotaurMove = std::rand() % 4;  // 4 moguca poteza - A, W, S, D
+				int minotaurMove = std::rand() % 4;  // 4 moguca poteza - A (levo), W (gore), S (dole), D (desno)
 				char move = minotaurMoves[minotaurMove];
 				unsigned int newRow = mRow;
 				unsigned int newCol = mCol;
@@ -162,6 +174,7 @@ void Game::startGame() {
 			}
 		}
 	}
+	// provera da li je doslo do pobede robota ili minotaura
 	if (won) {
 		labyrinth.showMatrix();
 		std::cout << "You got out!!!" << std::endl;
@@ -170,6 +183,7 @@ void Game::startGame() {
 		labyrinth.showMatrix();
 		std::cout << "Minotaur caught you! :(" << std::endl;
 	}
+	// cuvanje igre u fajl
 	SaveData saveData;
 	saveData.saveGame(labyrinth, won, lost);
 }

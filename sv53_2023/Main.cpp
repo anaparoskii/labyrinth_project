@@ -2,11 +2,16 @@
 #include "Labyrinth.h"
 #include "Game.h"
 
+/*
+ovde se nalazi postavka igre - bira se dimenzija matrice i broj specijalnih predmeta na tabli
+*/
+
 int main() {
 	std::cout << "~~~ KNOSSOS LABYRINTH ~~~" << std::endl;
 	unsigned int rows;
 	unsigned int cols;
 	int itemNumber;
+	// parametri se unose dok se ne unesu odgovarajuce vrednosti
 	while (true) {
 		std::cout << "Enter row number: " << std::endl;
 		std::cin >> rows;
