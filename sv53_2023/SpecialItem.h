@@ -34,10 +34,10 @@ public:
 	void setMovesLeft(int movesLeft);
 
 	// funkcije za 4 moci predmeta
-	SpecialItem& fogOfWarItem();
-	SpecialItem& swordItem();
-	SpecialItem& shieldItem();
-	SpecialItem& hammerItem();
+	SpecialItem& activateFogOfWar();
+	SpecialItem& activateSword();
+	SpecialItem& activateShield();
+	SpecialItem& activateHammer();
 
 	SpecialItem& operator=(const SpecialItem& otherItem);
 

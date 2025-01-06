@@ -54,9 +54,9 @@ public:
 	Parametri: referenca na listu pokupljenih specijalnih predmeta i ukupan broj specijalnih predmeta na tabli
 	Povratna vrednost: true ili false
 	*/
-	bool swordActive(SpecialItem* itemList, int length);
-	bool hammerActive(SpecialItem* itemList, int length);
-	bool shieldActive(SpecialItem* itemList, int length);
-	bool fogActive(SpecialItem* itemList, int length);
+	bool isSwordActive(SpecialItem* itemList, int length);
+	bool isHammerActive(SpecialItem* itemList, int length);
+	bool isShieldActive(SpecialItem* itemList, int length);
+	bool isFogActive(SpecialItem* itemList, int length);
 
 };

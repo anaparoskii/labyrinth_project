@@ -8,6 +8,10 @@ Autor: Ana Paroski
 Poslednja izmena: 04.01.2025.
 */
 
+const bool PLAY = true;
+const bool WON = false;
+const bool LOST = false;
+
 int main() {
 	std::cout << "~~~ KNOSSOS LABYRINTH ~~~" << std::endl;
 	unsigned int rows;
@@ -47,9 +51,9 @@ int main() {
 
 	Labyrinth labyrinth(rows, cols, itemNumber);
 
-	bool play = true;
-	bool won = false;
-	bool lost = false;
+	bool play = PLAY;
+	bool won = WON;
+	bool lost = LOST;
 
 	Game game(labyrinth, play, won, lost);
 	game.startGame();

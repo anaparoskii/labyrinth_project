@@ -138,6 +138,13 @@ void Game::startGame() {
 						// minotaur samo unisti predmet tako da nema potrebe za dodatnom logikom
 						labyrinth[mRow][mCol] = '.';
 						if (labyrinth[newRow][newCol].getType() == 'P') {
+							for (int i = 0; i < labyrinth.getItemNumber(); i++) {
+								if (labyrinth.getItemList()[i].getX() == newRow && labyrinth.getItemList()[i].getY() == newCol) {
+									labyrinth.getItemList()[i].setX(-1);
+									labyrinth.getItemList()[i].setY(-1);
+									break;
+								}
+							}
 							std::cout << "Minotaur destroyed an object!" << std::endl;
 						}
 						labyrinth[newRow][newCol] = 'M';
@@ -158,13 +165,15 @@ void Game::updateActiveItems() {
 			labyrinth.getItemList()[i].setMovesLeft(labyrinth.getItemList()[i].getMovesLeft() - 1);
 			if (labyrinth.getItemList()[i].getMovesLeft() == 0) {
 				labyrinth.getItemList()[i].setActive(false);
+				labyrinth.getItemList()[i].setX(-1);
+				labyrinth.getItemList()[i].setY(-1);
 			}
 		}
 	}
 }
 
 void Game::showMatrix() {
-	if (fogActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+	if (isFogActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
 		labyrinth.showFogMatrix();
 	}
 	else {
@@ -178,7 +187,7 @@ void Game::wallCollision(int currentRobotX, int currentRobotY, int newRobotX, in
 	Ako nam nije aktiviran cekic, ovo nece biti moguce
 	Parametri: vrednosti starih i potencijalnih novih koordinata robota
 	*/
-	if (hammerActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+	if (isHammerActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
 		labyrinth[currentRobotX][currentRobotY] = '.';
 		labyrinth[newRobotX][newRobotY] = 'R';
 		labyrinth.setRobotCoordinates(newRobotX, newRobotY);
@@ -195,7 +204,7 @@ void Game::minotaurCollision(int currentRobotX, int currentRobotY, int newRobotX
 	Ako nam nije aktiviran mac, minotaur ce unistiti robota
 	Parametri: vrednosti starih i potencijalnih novih koordinata robota
 	*/
-	if (swordActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+	if (isSwordActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
 		labyrinth[currentRobotX][currentRobotY] = '.';
 		labyrinth[newRobotX][newRobotY] = 'R';
 		labyrinth.setRobotCoordinates(newRobotX, newRobotY);
@@ -219,30 +228,30 @@ void Game::itemCollection(int currentRobotX, int currentRobotY, int newRobotX, i
 
 	// bira se nasumicno koji ce predmet biti aktivan
 	int randomItem = std::rand() % 4;
-	SpecialItem item(newRobotX, newRobotY, "");
+	int itemIndex = -1;
+	for (int i = 0; i < labyrinth.getItemNumber(); i++) {
+		if (labyrinth.getItemList()[i].getX() == newRobotX && labyrinth.getItemList()[i].getY() == newRobotY) {
+			itemIndex = i;
+			break;
+		}
+	}
 	switch (randomItem) {
 	case 0: {
-		item = item.fogOfWarItem();
+		labyrinth.getItemList()[itemIndex] = labyrinth.getItemList()[itemIndex].activateFogOfWar();
 		break;
 	}
 	case 1: {
-		item = item.swordItem();
+		labyrinth.getItemList()[itemIndex] = labyrinth.getItemList()[itemIndex].activateSword();
 		break;
 	}
 	case 2: {
-		item = item.shieldItem();
+		labyrinth.getItemList()[itemIndex] = labyrinth.getItemList()[itemIndex].activateShield();
 		break;
 	}
 	case 3: {
-		item = item.hammerItem();
+		labyrinth.getItemList()[itemIndex] = labyrinth.getItemList()[itemIndex].activateHammer();
 		break;
 	}
-	}
-	for (int i = 0; i < labyrinth.getItemNumber(); i++) {
-		if (labyrinth.getItemList()[i].getX() == -1) {
-			labyrinth.getItemList()[i] = item;
-			break;
-		}
 	}
 	labyrinth[newRobotX][newRobotY] = 'R';
 	labyrinth.setRobotCoordinates(newRobotX, newRobotY);
@@ -256,7 +265,7 @@ bool Game::robotCollision(int robotX, int robotY, int minotaurX, int minotaurY) 
 	*/
 	if ((minotaurX == robotX && (minotaurY + 1 == robotY || minotaurY - 1 == robotY))
 		|| (minotaurY == robotY && (minotaurX + 1 == robotX || minotaurX - 1 == robotX))) {
-		if (shieldActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
+		if (isShieldActive(labyrinth.getItemList(), labyrinth.getItemNumber())) {
 			std::cout << "You stopped the minotaur!!!" << std::endl;
 		}
 		else {
@@ -316,7 +325,7 @@ void Game::handleEnd() {
 	saveData.saveGame(labyrinth, won, lost);
 }
 
-bool Game::swordActive(SpecialItem* itemList, int length) {
+bool Game::isSwordActive(SpecialItem* itemList, int length) {
 	for (int i = 0; i < length; i++) {
 		if (itemList[i].isActive() && itemList[i].getItemName() == "sword") {
 			return true;
@@ -325,7 +334,7 @@ bool Game::swordActive(SpecialItem* itemList, int length) {
 	return false;
 }
 
-bool Game::hammerActive(SpecialItem* itemList, int length) {
+bool Game::isHammerActive(SpecialItem* itemList, int length) {
 	for (int i = 0; i < length; i++) {
 		if (itemList[i].isActive() && itemList[i].getItemName() == "hammer") {
 			return true;
@@ -334,7 +343,7 @@ bool Game::hammerActive(SpecialItem* itemList, int length) {
 	return false;
 }
 
-bool Game::shieldActive(SpecialItem* itemList, int length) {
+bool Game::isShieldActive(SpecialItem* itemList, int length) {
 	for (int i = 0; i < length; i++) {
 		if (itemList[i].isActive() && itemList[i].getItemName() == "shield") {
 			return true;
@@ -343,7 +352,7 @@ bool Game::shieldActive(SpecialItem* itemList, int length) {
 	return false;
 }
 
-bool Game::fogActive(SpecialItem* itemList, int length) {
+bool Game::isFogActive(SpecialItem* itemList, int length) {
 	for (int i = 0; i < length; i++) {
 		if (itemList[i].isActive() && itemList[i].getItemName() == "fog of war") {
 			return true;

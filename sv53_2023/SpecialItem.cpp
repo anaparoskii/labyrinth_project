@@ -38,7 +38,7 @@ void SpecialItem::setMovesLeft(int movesLeft) {
 	this->movesLeft = movesLeft;
 }
 
-SpecialItem& SpecialItem::fogOfWarItem() {
+SpecialItem& SpecialItem::activateFogOfWar() {
 	/*
 	Ova funkcija se odnosi na predmet 'magla rata'
 	Magla rata smanjuje vidljivost robotu na 3x3
@@ -48,7 +48,7 @@ SpecialItem& SpecialItem::fogOfWarItem() {
 	return *this;
 }
 
-SpecialItem& SpecialItem::swordItem() {
+SpecialItem& SpecialItem::activateSword() {
 	/*
 	Ova funkcija se odnosi na predmet 'mac'
 	Mac omogucava robotu da ubije minotaura
@@ -58,7 +58,7 @@ SpecialItem& SpecialItem::swordItem() {
 	return *this;
 }
 
-SpecialItem& SpecialItem::shieldItem() {
+SpecialItem& SpecialItem::activateShield() {
 	/*
 	Ova funkcija se odnosi na predmet 'stit'
 	Stit omogucava robotu da se zastiti od napada minotaura
@@ -68,7 +68,7 @@ SpecialItem& SpecialItem::shieldItem() {
 	return *this;
 }
 
-SpecialItem& SpecialItem::hammerItem() {
+SpecialItem& SpecialItem::activateHammer() {
 	/*
 	Ova funkcija se odnosi na predmet 'cekic'
 	Cekic omogucava robotu da prodje kroz zidove

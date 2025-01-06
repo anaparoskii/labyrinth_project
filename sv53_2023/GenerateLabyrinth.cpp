@@ -3,6 +3,7 @@
 #include "GenerateLabyrinth.h"
 #include "Cell.h"
 #include "Labyrinth.h"
+#include "SpecialItem.h"
 
 /*
 Modul koji sadrzi definicije funkcija koje generisu lavirint
@@ -47,6 +48,7 @@ Cell** generateLabyrinth(Labyrinth& labyrinth) {
 			// predmeti se dodaju na bilo kom prolazu
 			if (matrix[randRow][randCol].getType() == '*' || matrix[randRow][randCol].getType() == '.') {
 				matrix[randRow][randCol] = Cell(randRow, randCol, 'P');
+				labyrinth.getItemList()[i] = SpecialItem(randRow, randCol, "");
 				break;
 			}
 		}
