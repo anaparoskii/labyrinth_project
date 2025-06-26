@@ -72,6 +72,8 @@ int SaveData::saveGame(Labyrinth& labyrinth, bool won, bool lost) {
 		return -1;
 	}
 	file << "Game " + std::to_string(this->gameNumber) << std::endl;
+	file << "Rows: " + std::to_string(labyrinth.getRows()) + "\tColumns: " + std::to_string(labyrinth.getCols()) << std::endl;
+	file << "Special items at start: " + std::to_string(labyrinth.getItemNumber()) << std::endl;
 	lastGameFile << this->gameNumber << std::endl;
 	for (unsigned int i = 0; i < labyrinth.getRows(); i++) {
 		for (unsigned int j = 0; j < labyrinth.getCols(); j++) {
