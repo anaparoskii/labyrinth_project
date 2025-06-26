@@ -7,14 +7,14 @@
 /*
 Modul koji sadrzi funkcije za rukovanje fajlova
 Autor: Ana Paroski
-Poslednja izmena: 04.01.2025.
+Poslednja izmena: 26.06.2025.
 */
 
 // konstruktor poziva funkciju getLastGame() i sam racuna redni broj sledece igre i na osnovu toga generise ime fajla
 SaveData::SaveData() {
 	int lastGameNumber = this->getLastGame();
 	this->gameNumber = lastGameNumber + 1;
-	this->fileName = "game" + std::to_string(this->gameNumber) + ".txt";
+	this->fileName = "Testovi/game" + std::to_string(this->gameNumber) + ".txt";
 }
 
 SaveData::~SaveData() {}
@@ -40,7 +40,7 @@ int SaveData::getLastGame() {
 	Funkcija ucitava redni broj poslednje igre iz fajla lastGame.txt
 	Povratna vrednost: redni broj poslednje igre
 	*/
-	std::ifstream file("lastGame.txt");
+	std::ifstream file("Testovi/lastGame.txt");
 	if (!file.is_open()) {
 		return -1;
 	}
@@ -62,7 +62,7 @@ int SaveData::saveGame(Labyrinth& labyrinth, bool won, bool lost) {
 	Povratna vrednost: -1 ako je doslo do greske, 0 ako je sve izvrseno kako treba
 	*/
 	std::ofstream file(this->fileName);
-	std::ofstream lastGameFile("lastGame.txt");
+	std::ofstream lastGameFile("Testovi/lastGame.txt");
 	if (!file.is_open()) {
 		std::cout << "Error while opening file" << std::endl;
 		return -1;

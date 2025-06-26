@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Ana\\Desktop\\sv53_2023\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\SaveData.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\SaveData.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\GenerateLabyrinth.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\GenerateLabyrinth.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Cell.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -17,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\SpecialItem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\SpecialItem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\GenerateLabyrinth.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\GenerateLabyrinth.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0694086D-25B0-436B-80AA-EDD8E418C10C}|sv53_2023\\sv53_2023.vcxproj|solutionrelative:sv53_2023\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +38,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "SaveData.cpp",
+              "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\SaveData.cpp",
+              "RelativeDocumentMoniker": "sv53_2023\\SaveData.cpp",
+              "ToolTip": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\SaveData.cpp",
+              "RelativeToolTip": "sv53_2023\\SaveData.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAswCoAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-26T19:49:24.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Cell.cpp",
               "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Cell.cpp",
               "RelativeDocumentMoniker": "sv53_2023\\Cell.cpp",
@@ -46,12 +63,11 @@
               "RelativeToolTip": "sv53_2023\\Cell.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-06T15:53:38.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-06T15:53:38.279Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "SpecialItem.cpp",
               "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\SpecialItem.cpp",
               "RelativeDocumentMoniker": "sv53_2023\\SpecialItem.cpp",
@@ -59,12 +75,11 @@
               "RelativeToolTip": "sv53_2023\\SpecialItem.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-06T15:51:14.799Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-06T15:51:14.799Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.cpp",
               "RelativeDocumentMoniker": "sv53_2023\\Game.cpp",
@@ -83,33 +98,33 @@
               "RelativeDocumentMoniker": "sv53_2023\\GenerateLabyrinth.cpp",
               "ToolTip": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\GenerateLabyrinth.cpp",
               "RelativeToolTip": "sv53_2023\\GenerateLabyrinth.cpp",
-              "ViewState": "AgIAABwAAAAAAAAAAADwvzQAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAJwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-06T15:34:54.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Game.h",
               "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.h",
               "RelativeDocumentMoniker": "sv53_2023\\Game.h",
               "ToolTip": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Game.h",
               "RelativeToolTip": "sv53_2023\\Game.h",
-              "ViewState": "AgIAABoAAAAAAAAAAAAowCsAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAowCsAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-01-05T18:32:21.662Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Main.cpp",
               "DocumentMoniker": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Main.cpp",
               "RelativeDocumentMoniker": "sv53_2023\\Main.cpp",
               "ToolTip": "C:\\Users\\Ana\\Desktop\\sv53_2023\\sv53_2023\\Main.cpp",
               "RelativeToolTip": "sv53_2023\\Main.cpp",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACsAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-05T17:50:26.053Z",
               "EditorCaption": ""
